@@ -1,0 +1,2038 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Pólizas API",
+  "collectionId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+  "dateExported": "2026-10-16T00:52:35.848Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "_id": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1. Consultas",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 10000
+    },
+    {
+      "_id": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2. Renovación",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 20000
+    },
+    {
+      "_id": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3. Alta de riesgos",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 30000
+    },
+    {
+      "_id": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4. Cancelaciones",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 40000
+    },
+    {
+      "_id": "b046d424-00f0-47eb-bc8b-c43da89ab9a8",
+      "name": "5. CORE mock",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 50000
+    },
+    {
+      "_id": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6. Seguridad (x-api-key)",
+      "containerId": "",
+      "created": "2026-10-16T00:52:35.848Z",
+      "sortNum": 60000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "873246da-6060-436c-8074-55872da19bea",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.01 Listar todas las pólizas",
+      "url": "http://localhost:8085/polizas",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "4"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[3].id",
+          "action": "equal",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "_id": "d02fb713-24ae-426d-b2ca-3698a6621556",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.02 Filtrar COLECTIVA + ACTIVA",
+      "url": "http://localhost:8085/polizas?tipo=COLECTIVA&estado=ACTIVA",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "tipo",
+          "value": "COLECTIVA",
+          "isPath": false
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].tipo",
+          "action": "equal",
+          "value": "COLECTIVA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].estado",
+          "action": "equal",
+          "value": "ACTIVA"
+        }
+      ]
+    },
+    {
+      "_id": "9de86312-ca0b-4e70-94ff-92cebf351214",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.03 Filtrar solo por tipo INDIVIDUAL",
+      "url": "http://localhost:8085/polizas?tipo=INDIVIDUAL",
+      "method": "GET",
+      "sortNum": 30000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "tipo",
+          "value": "INDIVIDUAL",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[1].id",
+          "action": "equal",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "_id": "614b33da-77d2-45d7-aa97-c2c916506e5a",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.04 Filtrar solo por estado CANCELADA",
+      "url": "http://localhost:8085/polizas?estado=CANCELADA",
+      "method": "GET",
+      "sortNum": 40000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "estado",
+          "value": "CANCELADA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "_id": "298ed0d9-e3c3-4d6c-ae1e-104b51b1d9cf",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.05 Filtro con enum inexistente",
+      "url": "http://localhost:8085/polizas?estado=VENCIDA",
+      "method": "GET",
+      "sortNum": 50000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "estado",
+          "value": "VENCIDA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        }
+      ]
+    },
+    {
+      "_id": "00b5b117-10d9-4d91-8bf8-0fecab39a050",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.06 Riesgos de la póliza 2",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "GET",
+      "sortNum": 60000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[1].id",
+          "action": "equal",
+          "value": "3"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].polizaId",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].estado",
+          "action": "equal",
+          "value": "ACTIVO"
+        }
+      ]
+    },
+    {
+      "_id": "66a4be44-45fa-4662-8dd1-dff1b7c03634",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.07 Riesgos de póliza cancelada (incluye cancelados)",
+      "url": "http://localhost:8085/polizas/3/riesgos",
+      "method": "GET",
+      "sortNum": 70000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "4"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        }
+      ]
+    },
+    {
+      "_id": "c736ca70-bf3a-4555-ba45-9671ff291f58",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.08 Riesgos de póliza inexistente",
+      "url": "http://localhost:8085/polizas/999/riesgos",
+      "method": "GET",
+      "sortNum": 80000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_NO_ENCONTRADA"
+        }
+      ]
+    },
+    {
+      "_id": "684fb3b6-0a9e-42dc-bc7c-01eebcdbd3f6",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "a35150b2-3f80-494c-82de-05c342cca24f",
+      "name": "1.09 Riesgos con id no positivo",
+      "url": "http://localhost:8085/polizas/0/riesgos",
+      "method": "GET",
+      "sortNum": 90000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "El id debe ser un entero positivo"
+        }
+      ]
+    },
+    {
+      "_id": "6ab8bb04-7023-4c7c-807b-e822ca7dea81",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.01 Renovar póliza 1 con IPC 5",
+      "url": "http://localhost:8085/polizas/1/renovar",
+      "method": "POST",
+      "sortNum": 100000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "RENOVADA"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"canonMensual\":1050.00"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"prima\":12600.00"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 5\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "6ef6b6fa-6fd4-4f83-8949-eab1c1493d25",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.02 Renovar póliza 2 con IPC decimal 5.20",
+      "url": "http://localhost:8085/polizas/2/renovar",
+      "method": "POST",
+      "sortNum": 110000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "RENOVADA"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"canonMensual\":2630.00"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"prima\":31560.00"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 5.20\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "4f00334a-2a5d-4e02-aa78-2ef0d10ac9ae",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.03 IPC 0 sobre póliza ya RENOVADA (sin cambio)",
+      "url": "http://localhost:8085/polizas/4/renovar",
+      "method": "POST",
+      "sortNum": 120000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "RENOVADA"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"canonMensual\":1200.00"
+        },
+        {
+          "type": "res-body",
+          "custom": "",
+          "action": "contains",
+          "value": "\"prima\":14400.00"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 0\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "a13d337f-7ce3-4cf5-88dd-f345ebf9d75b",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.04 Renovar póliza CANCELADA",
+      "url": "http://localhost:8085/polizas/3/renovar",
+      "method": "POST",
+      "sortNum": 130000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_CANCELADA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 5\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "df0b655d-c15f-4865-8c82-04291b0e6277",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.05 Renovar póliza inexistente",
+      "url": "http://localhost:8085/polizas/999/renovar",
+      "method": "POST",
+      "sortNum": 140000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_NO_ENCONTRADA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 5\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "9dd1710b-32ff-4752-b207-c4f5ac47bf1b",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.06 IPC faltante",
+      "url": "http://localhost:8085/polizas/1/renovar",
+      "method": "POST",
+      "sortNum": 150000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "ipcPorcentaje es obligatorio"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      }
+    },
+    {
+      "_id": "70b6e3e9-1983-4862-87c6-ee60841238d8",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.07 IPC negativo",
+      "url": "http://localhost:8085/polizas/1/renovar",
+      "method": "POST",
+      "sortNum": 160000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "ipcPorcentaje debe estar entre 0 y 100"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": -1\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "7a9e6b19-7c46-4b31-8eb0-7a3c99ef7158",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.08 IPC mayor a 100",
+      "url": "http://localhost:8085/polizas/1/renovar",
+      "method": "POST",
+      "sortNum": 170000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "ipcPorcentaje debe estar entre 0 y 100"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": 150\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "f96eea0b-1910-4b9f-94a3-0d69f383b19b",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "cbbd4eaa-64bf-47be-aee4-c3636cad81c1",
+      "name": "2.09 IPC no numérico",
+      "url": "http://localhost:8085/polizas/1/renovar",
+      "method": "POST",
+      "sortNum": 180000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ipcPorcentaje\": \"abc\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "75c92c04-08f1-4485-a89a-ee84ed00b590",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.01 Agregar riesgo a póliza COLECTIVA",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "POST",
+      "sortNum": 190000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.id",
+          "action": "equal",
+          "value": "6"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.polizaId",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.descripcion",
+          "action": "equal",
+          "value": "Apartamento 301"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "ACTIVO"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"Apartamento 301\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "191c666c-7024-4e23-8851-e3ba21f142c7",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.02 Agregar riesgo a póliza INDIVIDUAL",
+      "url": "http://localhost:8085/polizas/1/riesgos",
+      "method": "POST",
+      "sortNum": 200000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "TIPO_POLIZA_NO_PERMITE_RIESGOS"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"Garaje\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "1f101f70-5eb7-47a2-8836-1557d6f85317",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.03 Agregar riesgo a COLECTIVA cancelada",
+      "url": "http://localhost:8085/polizas/3/riesgos",
+      "method": "POST",
+      "sortNum": 210000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "409"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_CANCELADA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"Bodega 7\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "94586147-cbbf-49f3-8b7c-92447ecfa93c",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.04 Agregar riesgo a póliza inexistente",
+      "url": "http://localhost:8085/polizas/999/riesgos",
+      "method": "POST",
+      "sortNum": 220000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_NO_ENCONTRADA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"Apartamento 301\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "28c22781-dbeb-4170-aaa2-ee609d8382b5",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.05 Descripción ausente",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "POST",
+      "sortNum": 230000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      }
+    },
+    {
+      "_id": "1ae92b5f-fd32-4d8e-b2d5-b6def700c364",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.06 Descripción vacía",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "POST",
+      "sortNum": 240000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "162418b0-3f62-422d-a541-d7457bffb3d7",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.07 Descripción de 256 caracteres",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "POST",
+      "sortNum": 250000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"descripcion\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "ffbbbb4c-542b-4b2a-900a-31e28b54c242",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "c261f838-76df-4436-862d-d97993efca6c",
+      "name": "3.08 Verificar riesgos de la póliza 2 tras el alta",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "GET",
+      "sortNum": 260000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "3"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[2].id",
+          "action": "equal",
+          "value": "6"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[2].descripcion",
+          "action": "equal",
+          "value": "Apartamento 301"
+        }
+      ]
+    },
+    {
+      "_id": "2ae52988-ac3a-4348-b2ce-f405d0058cfd",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.01 Cancelar riesgo 2",
+      "url": "http://localhost:8085/riesgos/2/cancelar",
+      "method": "POST",
+      "sortNum": 270000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.id",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.polizaId",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        }
+      ]
+    },
+    {
+      "_id": "d4e8339d-bca0-4942-93aa-c59f420ef4b5",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.02 Verificar: solo se canceló el riesgo 2",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "GET",
+      "sortNum": 280000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[1].estado",
+          "action": "equal",
+          "value": "ACTIVO"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[2].estado",
+          "action": "equal",
+          "value": "ACTIVO"
+        }
+      ]
+    },
+    {
+      "_id": "db8777cf-d2ae-429b-927f-195805e6ddeb",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.03 Verificar: la póliza 2 no se canceló",
+      "url": "http://localhost:8085/polizas?tipo=COLECTIVA&estado=RENOVADA",
+      "method": "GET",
+      "sortNum": 290000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "tipo",
+          "value": "COLECTIVA",
+          "isPath": false
+        },
+        {
+          "name": "estado",
+          "value": "RENOVADA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "1"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "_id": "65773c1b-e921-4d6b-b45a-43fd5cac2d4e",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.04 Cancelar riesgo 2 otra vez (idempotente)",
+      "url": "http://localhost:8085/riesgos/2/cancelar",
+      "method": "POST",
+      "sortNum": 300000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        }
+      ]
+    },
+    {
+      "_id": "cd7a0bf4-bd8e-4c1d-9845-478f56ae4a9e",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.05 Cancelar riesgo inexistente",
+      "url": "http://localhost:8085/riesgos/999/cancelar",
+      "method": "POST",
+      "sortNum": 310000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "RIESGO_NO_ENCONTRADO"
+        }
+      ]
+    },
+    {
+      "_id": "54e1debb-b53a-4506-995a-8358984fa45e",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.06 Cancelar el único riesgo de una INDIVIDUAL",
+      "url": "http://localhost:8085/riesgos/5/cancelar",
+      "method": "POST",
+      "sortNum": 320000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.id",
+          "action": "equal",
+          "value": "5"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.polizaId",
+          "action": "equal",
+          "value": "4"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        }
+      ]
+    },
+    {
+      "_id": "4b41757b-fe4b-4cdb-a56e-0fcef309d0fa",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.07 Verificar: la póliza 4 sigue vigente",
+      "url": "http://localhost:8085/polizas?tipo=INDIVIDUAL&estado=RENOVADA",
+      "method": "GET",
+      "sortNum": 330000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "tipo",
+          "value": "INDIVIDUAL",
+          "isPath": false
+        },
+        {
+          "name": "estado",
+          "value": "RENOVADA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[1].id",
+          "action": "equal",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "_id": "0fb7e60b-abf9-4d76-8043-5b8bd90ac6fc",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.08 Cancelar póliza 2 (cascada a sus riesgos)",
+      "url": "http://localhost:8085/polizas/2/cancelar",
+      "method": "POST",
+      "sortNum": 340000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.id",
+          "action": "equal",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "CANCELADA"
+        }
+      ]
+    },
+    {
+      "_id": "0872b269-e558-411c-a4ef-8a730993f3c6",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.09 Verificar: todos los riesgos de la póliza 2 cancelados",
+      "url": "http://localhost:8085/polizas/2/riesgos",
+      "method": "GET",
+      "sortNum": 350000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "3"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[1].estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[2].estado",
+          "action": "equal",
+          "value": "CANCELADO"
+        }
+      ]
+    },
+    {
+      "_id": "56348901-d913-46b7-9bb9-ff2587b807b4",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.10 Cancelar póliza 2 otra vez (idempotente)",
+      "url": "http://localhost:8085/polizas/2/cancelar",
+      "method": "POST",
+      "sortNum": 360000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.estado",
+          "action": "equal",
+          "value": "CANCELADA"
+        }
+      ]
+    },
+    {
+      "_id": "0c5c5a03-597b-49e7-b429-632370e19a37",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "1336d567-0140-4da1-9035-6c3d3eef40a3",
+      "name": "4.11 Cancelar póliza inexistente",
+      "url": "http://localhost:8085/polizas/999/cancelar",
+      "method": "POST",
+      "sortNum": 370000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "POLIZA_NO_ENCONTRADA"
+        }
+      ]
+    },
+    {
+      "_id": "db2641b6-f5c0-4cc2-9fc0-f93b4dd2b513",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "b046d424-00f0-47eb-bc8b-c43da89ab9a8",
+      "name": "5.01 Registrar evento en el CORE mock",
+      "url": "http://localhost:8085/core-mock/evento",
+      "method": "POST",
+      "sortNum": 380000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "Evento registrado"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"evento\": \"ACTUALIZACION\",\n  \"polizaId\": 555\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "5bc5b315-d8db-4c06-8203-c9727ae8f89a",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "b046d424-00f0-47eb-bc8b-c43da89ab9a8",
+      "name": "5.02 Evento distinto de ACTUALIZACION",
+      "url": "http://localhost:8085/core-mock/evento",
+      "method": "POST",
+      "sortNum": 390000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "evento debe ser ACTUALIZACION"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"evento\": \"BORRADO\",\n  \"polizaId\": 555\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "7212b834-74bd-4c24-b2e6-0155581991bc",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "b046d424-00f0-47eb-bc8b-c43da89ab9a8",
+      "name": "5.03 polizaId no positivo",
+      "url": "http://localhost:8085/core-mock/evento",
+      "method": "POST",
+      "sortNum": 400000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "polizaId debe ser un entero positivo"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"evento\": \"ACTUALIZACION\",\n  \"polizaId\": 0\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "57ef94f4-97fe-4a6f-a148-be86d0b4dbf3",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "b046d424-00f0-47eb-bc8b-c43da89ab9a8",
+      "name": "5.04 polizaId ausente",
+      "url": "http://localhost:8085/core-mock/evento",
+      "method": "POST",
+      "sortNum": 410000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "SOLICITUD_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "polizaId es obligatorio"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"evento\": \"ACTUALIZACION\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "4ba1f441-e243-4c16-9158-ce454aec51aa",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6.01 Sin header x-api-key",
+      "url": "http://localhost:8085/polizas",
+      "method": "GET",
+      "sortNum": 420000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "API_KEY_INVALIDA"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.mensaje",
+          "action": "equal",
+          "value": "API key faltante o incorrecta"
+        }
+      ]
+    },
+    {
+      "_id": "3fd632f2-ac12-4062-b58c-365eed5c9582",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6.02 Con x-api-key incorrecta",
+      "url": "http://localhost:8085/polizas",
+      "method": "GET",
+      "sortNum": 430000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "000000"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "API_KEY_INVALIDA"
+        }
+      ]
+    },
+    {
+      "_id": "fb8ebbc9-9694-4c0f-aa9e-e1c19ffb0a44",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6.03 Cancelar póliza 1 sin x-api-key",
+      "url": "http://localhost:8085/polizas/1/cancelar",
+      "method": "POST",
+      "sortNum": 440000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "API_KEY_INVALIDA"
+        }
+      ]
+    },
+    {
+      "_id": "a86778b3-40db-4a1b-a407-cd713ec3bf61",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6.04 Verificar: la póliza 1 no se canceló",
+      "url": "http://localhost:8085/polizas?tipo=INDIVIDUAL&estado=RENOVADA",
+      "method": "GET",
+      "sortNum": 450000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "value": "123456"
+        }
+      ],
+      "params": [
+        {
+          "name": "tipo",
+          "value": "INDIVIDUAL",
+          "isPath": false
+        },
+        {
+          "name": "estado",
+          "value": "RENOVADA",
+          "isPath": false
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "json-query",
+          "custom": "json",
+          "action": "count",
+          "value": "2"
+        },
+        {
+          "type": "json-query",
+          "custom": "json[0].id",
+          "action": "equal",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "_id": "f8582e2c-8d16-4541-a00b-0b992f1a5eb0",
+      "colId": "d581d3c6-bdcf-4447-954a-4466bdaad1c4",
+      "containerId": "0ec2b1ed-f274-4410-8cf9-d4b8b9efab25",
+      "name": "6.05 CORE mock sin x-api-key",
+      "url": "http://localhost:8085/core-mock/evento",
+      "method": "POST",
+      "sortNum": 460000,
+      "created": "2026-10-16T00:52:35.848Z",
+      "modified": "2026-10-16T00:52:35.848Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "params": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        },
+        {
+          "type": "json-query",
+          "custom": "json.codigo",
+          "action": "equal",
+          "value": "API_KEY_INVALIDA"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"evento\": \"ACTUALIZACION\",\n  \"polizaId\": 555\n}",
+        "form": []
+      }
+    }
+  ]
+}
